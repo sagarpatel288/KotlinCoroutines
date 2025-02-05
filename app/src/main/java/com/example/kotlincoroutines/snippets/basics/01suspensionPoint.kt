@@ -35,7 +35,32 @@ import kotlinx.coroutines.runBlocking
  * Coroutines can be thought of as **_light-weight threads_**, but there are a number of important
  * differences that make their real-life usage very different from threads.
  *
- * ----------------------------------------------
+ * ## Sagar
+ *
+ * A coroutine runs its instructions sequentially until it hits a suspension point.
+ * A suspension point is an instruction to wait for the outcome.
+ * For example, waiting for the network response, copying a large file, a database operation, etc.
+ *
+ * When the kotlin coroutines hits a suspension point, it does not block the thread on which it is running.
+ * It suspends a single coroutine. So, the thread in which it is running, can still do other work.
+ *
+ * On the other hand, a blocking code blocks the entire thread.
+ * Which means, no coroutine that runs inside the blocked thread can run while the thread is blocked.
+ *
+ * When the kotlin coroutine hits a suspension point, it uses the `continuation`.
+ * [Continuation interface](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.coroutines/-continuation/)
+ *
+ * The kotlin coroutines uses the `continuation` interface to pause the current work (execution),
+ * and resume it later once the `suspended` code is finished.
+ *
+ * This characteristic removes the need for writing manual callbacks (interface or lambda functions).
+ *
+ * Not only this, it can also change (switch) the thread (context) on which they are currently running,
+ * with the help of `withContext`.
+ *
+ * For example, we can change the thread to the background thread when it comes to make a network request,
+ * and then again change the thread to the UI thread when it comes to update the UI based on the network response.
+ *
  *
  * The `main` function is the entry point of the application.
  */
