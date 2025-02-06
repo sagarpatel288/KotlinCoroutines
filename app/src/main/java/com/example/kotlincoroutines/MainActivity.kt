@@ -27,7 +27,8 @@ class MainActivity : ComponentActivity() {
      *
      * An ability to run and deal with multiple tasks at the same time,
      * not necessarily simultaneously (not necessarily at exact same time).
-     * So, concurrency is not necessarily parallelism.
+     * So, concurrency is not necessarily parallelism. But, the structure or architecture can quickly switch
+     * between the tasks.
      *
      * It means, the structure, or architecture can manage the multiple tasks out-of-order,
      * without affecting or changing the expected outcome.
