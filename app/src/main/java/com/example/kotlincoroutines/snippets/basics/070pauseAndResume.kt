@@ -15,6 +15,8 @@ fun main() = runBlocking {
             println("runBlocking --> GlobalScope.launch --> before delay $it")
             // `delay` is a suspend function and when a coroutine hits a suspension point,
             // it pauses the execution, waits until the suspend function completes, and then resumes the execution.
+            // In an actual app, we might have a network API call, an operation on a file, or a database operation,
+            // instead of the delay function.
             delay(1000)
             println("runBlocking --> GlobalScope.launch --> after delay $it")
         }
