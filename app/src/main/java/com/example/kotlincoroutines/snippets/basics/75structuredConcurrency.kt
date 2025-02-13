@@ -59,8 +59,10 @@ fun main() = runBlocking {
                 }
             }
         }
+        println("runBlocking --> 1st GlobalScope.launch --> before join")
         job1.join()
         job2.join()
+        println("runBlocking --> 1st GlobalScope.launch --> after join")
     }
 
     val gJob2 = GlobalScope.launch {
@@ -93,9 +95,17 @@ fun main() = runBlocking {
                 }
             }
         }
+        println("runBlocking --> 2nd GlobalScope.launch --> before join")
         job1.join()
         job2.join()
+        println("runBlocking --> 2nd GlobalScope.launch --> after join")
     }
+    println("runBlocking --> before join")
+    // Without this gJob1.join() and gJob2.join(), the program will exit before the `GlobalScope` coroutines finish.
+    // It is something we have seen earlier:
+    // We make the `runBlocking` to wait for the `GlobalScope.launch` execution using `join()`.
+    // Reference: app/src/main/java/com/example/kotlincoroutines/snippets/basics/050jobJoin.kt
     gJob1.join()
     gJob2.join()
+    println("runBlocking --> after join")
 }
