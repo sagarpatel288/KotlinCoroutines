@@ -7,6 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.lifecycleScope
 import com.example.kotlincoroutines.ui.theme.KotlinCoroutinesTheme
 import kotlinx.coroutines.*
 
@@ -15,6 +16,37 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         concurrency()
+        structuredConcurrency()
+    }
+
+    private fun structuredConcurrency() {
+        lifecycleScope.launch {
+            launch {
+                repeat(5) {
+                    delay(2000L)
+                    println("StructuredConcurrency: 1st launch $it")
+                }
+                launch {
+                    repeat(5) {
+                        delay(1000L)
+                        println("StructuredConcurrency: 1st launch --> launch $it")
+                    }
+                }
+            }
+            launch {
+                repeat(5) {
+                    delay(1000L)
+                    println("StructuredConcurrency: 2nd launch $it")
+                }
+                launch {
+                    repeat(5) {
+                        delay(1000L)
+                        println("StructuredConcurrency: 2nd launch --> launch $it")
+                    }
+                }
+            }
+            println("StructuredConcurrency: Outside lifecycleScope.launch")
+        }
     }
 
     /**
@@ -66,15 +98,15 @@ class MainActivity : ComponentActivity() {
      *
      */
     private fun concurrency() {
-        println("Started")
+        println("Started GlobalScope concurrency example")
         GlobalScope.launch {
             repeat(30) {
-                println("First Scope $it")
+                println("First GlobalScope $it")
             }
         }
         GlobalScope.launch {
             repeat(30) {
-                println("Second Scope $it")
+                println("Second GlobalScope $it")
             }
         }
     }
