@@ -10,13 +10,46 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
 import com.example.kotlincoroutines.ui.theme.KotlinCoroutinesTheme
 import kotlinx.coroutines.*
+import kotlin.system.measureTimeMillis
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        simplifiedConcurrency()
+        sequentialExecution()
         concurrency()
         structuredConcurrency()
+    }
+
+    private fun sequentialExecution() {
+        lifecycleScope.launch {
+            val tm = measureTimeMillis {
+                delay(2000L)
+                println("SequentialExecution: 1st delay finished")
+                delay(1000L)
+                println("SequentialExecution: 2nd delay finished")
+            }
+            println("SequentialExecution: It took a total of $tm ms")
+        }
+    }
+
+    private fun simplifiedConcurrency() {
+        lifecycleScope.launch {
+            val innerJob1 = launch {
+                delay(2000L)
+                println("SimplifiedConcurrency: 1st launch finished")
+            }
+            val innerJob2 = launch {
+                delay(1000L)
+                println("SimplifiedConcurrency: 2nd launch finished")
+            }
+            val tm = measureTimeMillis {
+                innerJob1.join()
+                innerJob2.join()
+            }
+            println("Both jobs took a total of $tm ms")
+        }
     }
 
     private fun structuredConcurrency() {
