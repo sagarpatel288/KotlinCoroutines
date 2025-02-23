@@ -2,7 +2,9 @@ package com.example.kotlincoroutines.snippets.basics
 
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.yield
 
 /**
  * A `GlobalScope.launch` is an independent coroutine without any relation to the parent coroutine.
@@ -18,8 +20,11 @@ import kotlinx.coroutines.runBlocking
 class OrphanGlobalScope {
     init {
         println("OrphanGlobalScope: Started init")
+    }
+
+    fun orphanGlobalScope() {
         runBlocking {
-            println("OrphanGlobalScope: runBlocking --> GlobalScope.launch 01")
+            println("OrphanGlobalScope: started runBlocking --> ")
             GlobalScope.launch { // This is NOT a child of runBlocking
                 // work
                 repeat(30) {
@@ -28,19 +33,11 @@ class OrphanGlobalScope {
                     println("OrphanGlobalScope: First Global Scope: runBlocking -> GlobalScope.launch -> $it")
                 }
             }
-            println("OrphanGlobalScope: runBlocking --> GlobalScope.launch 02")
-            GlobalScope.launch { // This is NOT a child of runBlocking
-                // work
-                repeat(30) {
-                    // This will not be printed until and unless we force the runBlocking to wait,
-                    // or make the program busy so that the GlobalScope gets the chance of execution.
-                    println("OrphanGlobalScope: Second Global Scope: runBlocking -> GlobalScope.launch -> $it")
-                }
-            }
-        } // runBlocking completes immediately without waiting
+            println("Finished runBlocking")
+        } // runBlocking completes immediately without waiting.
     }
 }
 
 fun main() {
-    OrphanGlobalScope()
+    OrphanGlobalScope().orphanGlobalScope()
 }
