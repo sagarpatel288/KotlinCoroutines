@@ -36,6 +36,11 @@ class CoroutinePractice() {
         delay(3000L)
         coroutineScope.coroutineContext.cancel()
         println("The coroutine scope is active: ${coroutineScope.coroutineContext.isActive}")
+        val job2 = coroutineScope.launch {
+            println("inside the coroutineScope 2")
+        }
+        println("Is the job active? ${job2.isActive}")
+        println("Is the coroutine scope active? ${coroutineScope.coroutineContext.isActive}")
     }
 }
 
