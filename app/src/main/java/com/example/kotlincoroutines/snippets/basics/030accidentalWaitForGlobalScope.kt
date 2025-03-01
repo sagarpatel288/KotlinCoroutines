@@ -75,7 +75,7 @@ import kotlinx.coroutines.runBlocking
  * it will not have a pre-defined and fixed order of execution.
  * So, run it multiple times and see the output.
  */
-class ExplicitWaitForGlobalScope() {
+class AccidentalWaitForGlobalScopeWithDelay() {
     init {
         println("ExplicitWait: Started init")
         runBlocking {
@@ -108,5 +108,5 @@ class ExplicitWaitForGlobalScope() {
 }
 
 fun main() {
-    ExplicitWaitForGlobalScope()
+    AccidentalWaitForGlobalScopeWithDelay()
 }

@@ -9,7 +9,7 @@ import kotlinx.coroutines.delay
  * # Accidental Wait For GlobalScope Execution: Using `delay`.
  *
  * Earlier, we have seen
- * [Explicit Wait](app/src/main/java/com/example/kotlincoroutines/snippets/basics/030explicitWaitForGlobalScope.kt)
+ * [Explicit Wait](app/src/main/java/com/example/kotlincoroutines/snippets/basics/030accidentalWaitForGlobalScope.kt)
  * where we have used `delay` to wait for the `GlobalScope.launch` execution.
  *
  * Here, we keep the program (`main` fun) busy in other work so that the `GlobalScope.launch` gets the chance of

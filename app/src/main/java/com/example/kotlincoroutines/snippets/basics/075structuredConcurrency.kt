@@ -4,7 +4,7 @@ import kotlinx.coroutines.*
 
 /**
  * Earlier, we have seen what is concurrency.
- * [Concurrency](app/src/main/java/com/example/kotlincoroutines/snippets/basics/030explicitWaitForGlobalScope.kt)
+ * [Concurrency](app/src/main/java/com/example/kotlincoroutines/snippets/basics/030accidentalWaitForGlobalScope.kt)
  *
  * Again, concurrency is an ability to run and deal with multiple tasks,
  * either using a synchronous programming (multi-threaded) or asynchronous programming (non-blocking multi-process).

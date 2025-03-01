@@ -9,7 +9,7 @@ import kotlinx.coroutines.runBlocking
  * # Problem with accidental wait For GlobalScope Execution:
  *
  * Earlier, we have seen
- * [Explicit Wait](app/src/main/java/com/example/kotlincoroutines/snippets/basics/030explicitWaitForGlobalScope.kt)
+ * [Explicit Wait](app/src/main/java/com/example/kotlincoroutines/snippets/basics/030accidentalWaitForGlobalScope.kt)
  * where we have used `delay` to wait for the `GlobalScope.launch` execution.
  *
  * We have also seen

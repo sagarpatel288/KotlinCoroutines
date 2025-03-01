@@ -9,7 +9,7 @@ import kotlinx.coroutines.delay
  * # Accidental Wait For GlobalScope Execution: Using `job1.join()` and `job2.join()`.
  *
  * Earlier, we have seen
- * [Explicit Wait](app/src/main/java/com/example/kotlincoroutines/snippets/basics/030explicitWaitForGlobalScope.kt)
+ * [Explicit Wait](app/src/main/java/com/example/kotlincoroutines/snippets/basics/030accidentalWaitForGlobalScope.kt)
  * where we have used `delay` to wait for the `GlobalScope.launch` execution.
  *
  * We have also seen
