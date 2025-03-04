@@ -100,6 +100,8 @@ import kotlin.system.measureTimeMillis
  * computations without being interrupted frequently, which is why the `Default` dispatcher completes the CPU intensive
  * work faster than the `IO` dispatcher.
  *
+ * [IO - Kotlin Doc](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-i-o.html)
+ * [Default - Kotlin Doc](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html)
  */
 class IoVsDefault {
 
