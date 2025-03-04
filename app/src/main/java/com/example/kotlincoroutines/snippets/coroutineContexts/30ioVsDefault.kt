@@ -109,6 +109,7 @@ class IoVsDefault {
             repeat(100) {
                 launch {
                     threads[Thread.currentThread().id] = Thread.currentThread().name
+                    // Simulates a Blocking operation
                     Thread.sleep(1000L)
                 }
             }
@@ -125,6 +126,7 @@ class IoVsDefault {
             repeat(100) {
                 launch {
                     threads[Thread.currentThread().id] = Thread.currentThread().name
+                    // Simulates a Blocking operation
                     Thread.sleep(1000L)
                 }
             }
@@ -141,6 +143,7 @@ class IoVsDefault {
             repeat(100) {
                 launch {
                     threads[Thread.currentThread().id] = Thread.currentThread().name
+                    // Simulates a CPU intensive work
                     (1..100000).map {
                         it * it
                     }
@@ -159,6 +162,7 @@ class IoVsDefault {
             repeat(100) {
                 launch {
                     threads[Thread.currentThread().id] = Thread.currentThread().name
+                    // Simulates a CPU intensive work
                     (1..100000).map {
                         it * it
                     }
