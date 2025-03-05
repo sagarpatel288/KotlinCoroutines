@@ -6,6 +6,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.launch
 import kotlin.coroutines.coroutineContext
@@ -27,7 +28,7 @@ class CoroutineContextExample() {
             println("coroutineExceptionHandler: coroutineContext: $coroutineContext, throwable: $throwable")
         }
         val coroutineContext = Dispatchers.IO + SupervisorJob() + coroutineExceptionHandler + CoroutineName("myCoroutineScope")
-        val scope = CoroutineScope(coroutineContext).launch {
+        val job = CoroutineScope(coroutineContext).launch {
                 println("coroutineContext: $coroutineContext")
                 val job = coroutineContext[Job]
                 println("coroutineContext[Job]: $job")
@@ -36,7 +37,11 @@ class CoroutineContextExample() {
                 val handler = coroutineContext[CoroutineExceptionHandler]
                 println("coroutineContext[CoroutineExceptionHandler]: $handler")
             }
+        // Cancels only the particular job.
+        job.cancelChildren()
+        // Cancels all the children coroutines that use the same scope - the scope that uses this coroutineContext.
         coroutineContext.cancelChildren()
-        scope.cancelChildren()
+        // Cancels the whole scope that uses this coroutineContext.
+        coroutineContext.cancel()
     }
 }
