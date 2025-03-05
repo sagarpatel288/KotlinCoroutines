@@ -1,4 +1,4 @@
-package com.example.kotlincoroutines.snippets.basics
+package com.example.kotlincoroutines.snippets.`010basics010`
 
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay

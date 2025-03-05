@@ -1,4 +1,4 @@
-package com.example.kotlincoroutines.snippets.coroutineContexts
+package com.example.kotlincoroutines.snippets.`020coroutineContexts020`
 
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineName
